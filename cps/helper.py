@@ -1114,7 +1114,7 @@ def get_download_link(book_id, book_format, client):
                 ub.update_download(book_id, int(current_user.id))
             file_name = book.title
             if len(book.authors) > 0:
-                file_name = file_name + ' - ' + book.authors[0].name
+                file_name = book.authors[0].name + ' - ' + book.title
             original_name = file_name
             file_name = get_valid_filename(file_name, replace_whitespace=False, force_unidecode=True)
             if client == "kindle":
