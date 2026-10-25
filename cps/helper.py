@@ -1112,9 +1112,9 @@ def get_download_link(book_id, book_format, client):
             # collect downloaded books only for registered user and not for anonymous user
             if current_user.is_authenticated:
                 ub.update_download(book_id, int(current_user.id))
-            file_name = book.title
+            file_name = db.title_sort(book.title, config)
             if len(book.authors) > 0:
-                file_name = book.authors[0].name + ' - ' + book.title
+                file_name = book.authors[0].name + ' - ' + file_name
             original_name = file_name
             file_name = get_valid_filename(file_name, replace_whitespace=False, force_unidecode=True)
             if client == "kindle":
