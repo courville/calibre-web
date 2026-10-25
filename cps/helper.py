@@ -1113,7 +1113,10 @@ def get_download_link(book_id, book_format, client):
             if current_user.is_authenticated:
                 ub.update_download(book_id, int(current_user.id))
             name_format = config.config_download_name_format or 0
-            file_name = db.title_sort(book.title, config) if name_format in (1, 3) else book.title
+            if name_format in (1, 3):
+                file_name = book.sort or db.title_sort(book.title, config)
+            else:
+                file_name = book.title
             if len(book.authors) > 0:
                 if name_format in (2, 3):
                     file_name = book.authors[0].name + ' - ' + file_name
